@@ -1,0 +1,33 @@
+body {
+    background: black;
+}
+
+video#bgvid {
+    position: fixed; right: 0; bottom: 0;
+    min-width: 100%; min-height: 100%;
+    max-width: 100%;
+    width: auto; height: auto; z-index: -100;
+    background-size: cover;
+}
+
+#overlay {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    background: rgba(0,0,0,0.7);
+}
+
+#overlay .center {
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 22%;
+    text-align: center;
+}
+#overlay .center h1 {
+    color: #fff;
+}
