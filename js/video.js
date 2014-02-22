@@ -18,7 +18,7 @@ function setSpeed () {
 function getBikeData () {
 	var bikeData;
 	// hit the server brooo
-	$.getJSON("http://127.0.0.1:8080/horizon-update", function(json){
+	$.getJSON("http://192.168.1.101:8082/", function(json){
 		bikeData = json;
 		console.log(bikeData);
 		processData(bikeData);
@@ -27,7 +27,10 @@ function getBikeData () {
 
 function processData (bikeData) {
 	var distance = 0;
-	distance = bikeData.distance;
+	dist = bikeData.distance;
+	revs = bikeData.revolutions;
+	freq = bikeData.frequency;
+	velo = bikeData.velocity;
 }
 
 function test () {
@@ -43,6 +46,7 @@ function test () {
 // update every x milliseconds
 function everyTime(often) {
     window.setTimeout(function() {
+    	getBikeData();
 
  		// change the video speed
         video.playbackRate = speed;
