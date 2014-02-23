@@ -49,7 +49,7 @@ function setSpeed () {
 function getBikeData () {
 	var bikeData;
 	// hit the server brooo
-	$.getJSON("http://169.254.9.110:8080/", function(json){
+	$.getJSON("http://localhost:8082/", function(json){
 		bikeData = json;
 		//console.log(bikeData);
 		processData(bikeData);
@@ -84,6 +84,12 @@ function writeData (dist, revs, freq, velo) {
 	document.getElementById("total-dist").innerHTML = Math.round(dist) + " m";
 	document.getElementById("velocity").innerHTML = Math.round(velo * 3.6 ) + " km/h";
 	//console.log(dist);
+	if (dist < finish && dist > 0) {
+		var progress = Math.round((dist / finish) * 100);
+	} else {
+		var progress = 100;
+	}
+	document.getElementById("progress-wrap").innerHTML = "<progress id=\"distance-bar\" value=\"" + progress + "\" max=\"100\"></progress>";
 }
 
 function textExplode () {

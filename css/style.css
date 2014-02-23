@@ -68,3 +68,16 @@ h1, h2, h3, h4, p {
 
 
 
+#distance-bar{
+  position: fixed;
+  bottom: 12px;
+  background-color: #eee;
+  height: 35px;
+  width: 98%;
+  margin-left: 10px;
+}
+ 
+progress[value]::-webkit-progress-value {
+  background-color: #fff;
+  border-color: white;
+}
