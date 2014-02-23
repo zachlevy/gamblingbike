@@ -4,22 +4,22 @@ var maxVelo = 40;
 var distOffset = 0;
 
 var goal1 = {
-	atDist:30,
+	atDist:100,
 	points:true,
 	baseText:"+100 Points",
-	secondaryText:"+124 Bonus"
+	secondaryText:"+121 Bonus"
 };
 var goal2 = {
-	atDist:130,
+	atDist:200,
 	points:true,
 	baseText:"+100 Points",
-	secondaryText:"+124 Bonus"
+	secondaryText:"+122 Bonus"
 };
 var goal3 = {
-	atDist:30,
+	atDist:300,
 	points:true,
 	baseText:"+100 Points",
-	secondaryText:"+124 Bonus"
+	secondaryText:"+123 Bonus"
 };
 
 var goals = new Array(goal1,goal2,goal3);
@@ -40,7 +40,7 @@ $( "#img-score" ).hide();
 // set the speed of the video while its playing
 function setSpeed () {
     var x=document.getElementById("demo");
-    speed = Math.floor((Math.random()*3)+1);
+    speed = Math.floor(10 * (Math.random()*3)+1)/10);
 }
 
 function getBikeData () {
@@ -71,7 +71,7 @@ function processData (bikeData) {
 
 function updateSpeed(velocity) {
 	if (velocity > 1) {
-		var speed = (velocity * 2.5) / 10;
+		var speed = (velocity * 2.5) / 10.0;
 	} else {
 		var speed = 0;
 	}
@@ -81,9 +81,8 @@ function updateSpeed(velocity) {
 
 // put it on the page brooo
 function writeData (dist, revs, freq, velo) {
-	document.getElementById("total-dist").innerHTML = Math.round(dist) + " m";
 	document.getElementById("velocity").innerHTML = Math.round(velo * 3.6 ) + " km/h";
-	//console.log(dist);
+	document.getElementById("total-dist").innerHTML = Math.round(dist) + " m";
 	if (dist < finish ) {
 		var progress = Math.round((dist / finish) * 1000)/10;
 	} else {
