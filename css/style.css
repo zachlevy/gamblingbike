@@ -65,16 +65,26 @@ h1, h2, h3, h4, p {
     padding: 0;
 }
 
+#distance-text{
+    position: fixed;
+    bottom: 30px;
+    margin-left: 10px;
+    font-size: 20px;
+}
 
+#distance-text-left{
+    margin-left: 1050px;
+}
 
 
 #distance-bar{
   position: fixed;
   bottom: 12px;
   background-color: #eee;
-  height: 35px;
+  height: 30px;
   width: 98%;
   margin-left: 10px;
+
 }
  
 progress[value]::-webkit-progress-value {
