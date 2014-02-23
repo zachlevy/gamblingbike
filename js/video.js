@@ -1,11 +1,11 @@
 // track
-var finish = 1000;
+var finish = 140;
 var maxVelo = 40;
 var distOffset = 0;
 var totalPoints = 0;
 var targetVelo = 10;
 
-var videos = new Array("nyc_bike.mp4", "canyon_bike.mp4", "mountain_bike.mp4");
+var videos = new Array("nyc_bike.mp4", "canyon_bike_720.mp4", "road_bike2.mp4");
 
 var goal1 = {
 	atDist:100,
@@ -40,7 +40,7 @@ var goal4 = {
 	used: false
 };
 var goal5 = {
-	atDist:1000,
+	atDist:900,
 	points:true,
 	addPoints: 1000,
 	baseText:"+1000 Points",
@@ -48,7 +48,7 @@ var goal5 = {
 	used: false
 };
 
-var goals = new Array(goal1,goal2,goal3, goal4, goal5);
+var goals = new Array(goal1,goal2,goal3);
 
 console.log(goals);
 
@@ -81,7 +81,7 @@ function calcBonus (basePoints) {
 function getBikeData () {
 	var bikeData;
 	// hit the server brooo
-	$.getJSON("http://localhost:8080/", function(json){
+	$.getJSON("http://localhost:8082/", function(json){
 		bikeData = json;
 		//console.log(bikeData);
 		processData(bikeData);
@@ -133,7 +133,7 @@ function checkGoals(dist) {
 
 function updateSpeed(velocity) {
 	if (velocity > 1) {
-		var speed = (velocity * 2) / 10.0;
+		var speed = (velocity * 1) / 10.0;
 	} else {
 		var speed = 0;
 	}
@@ -155,16 +155,20 @@ function writeData (dist, revs, freq, velo) {
 
 // html for text explode
 function updateText (primary, secondary) {
+	console.log("update text");
 	document.getElementById("base-text").innerHTML = primary;
 	document.getElementById("secondary-text").innerHTML = secondary;
 }
 
 function showText () {
+	console.log("show text");
+	$("#text-wrap").show();
 	$("#base-text").show();
 	$("#secondary-text").show();
 }
 
 function hideText() {
+	console.log("hide text");
 	$("#base-text").hide();
 	$("#secondary-text").hide();
 }
@@ -194,13 +198,14 @@ function timer() {
 
 function waitingState () {
 	showText();
-	timeout = 3;
+	timeout = 20;
 	var timeoutinProgress = true;
 	console.log('waiting state');
 	var counter = setInterval(function(){
 	//setInterval(function(){
 		
 		updateText("Time Until Next Heat", timeout + " seconds");
+		showText();
 		console.log(timeout);
 
 		if (timeout <= 0 && timeoutinProgress == true){ 
@@ -230,7 +235,9 @@ function resetVideo () {
 
 //
 function checkFinish(dist) {
+	console.log("dist:" + dist + ". finish: " + finish);
 	if (dist > finish) {
+		console.log("dist > finish");
 		resetDistance();
 		resetTrack();
 		//setTimeout(resetTrack(), 1000);
@@ -239,6 +246,7 @@ function checkFinish(dist) {
 
 // sets game for next heat
 function resetTrack () {
+	console.log("reset track");
 	waitingState();
 	//resetDistance();
 	//resetGoals ();
@@ -263,7 +271,7 @@ setInterval(everyTime, 500);
 
 
 function resetDistance () {
-	$.getJSON("http://localhost:8080/", function(json){
+	$.getJSON("http://localhost:8082/", function(json){
 	bikeData = json;
 	distOffset = bikeData.distance;
 });
