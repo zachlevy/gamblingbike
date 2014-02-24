@@ -1,11 +1,11 @@
 // track
-var finish = 140;
+var finish = 950;
 var maxVelo = 40;
 var distOffset = 0;
 var totalPoints = 0;
 var targetVelo = 10;
 
-var videos = new Array("nyc_bike.mp4", "canyon_bike_720.mp4", "road_bike2.mp4");
+var videos = new Array("nyc_bike.mp4", "road_bike2.mp4");
 
 var goal1 = {
 	atDist:100,
@@ -198,7 +198,7 @@ function timer() {
 
 function waitingState () {
 	showText();
-	timeout = 20;
+	timeout = 15;
 	var timeoutinProgress = true;
 	console.log('waiting state');
 	var counter = setInterval(function(){
